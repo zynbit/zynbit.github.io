@@ -1,10 +1,31 @@
-<html>
 
+<!DOCTYPE html>
+<html>
 <head>
-	<title>Heat Map Test</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Correlation Explorer in D3.js</title>
+  
+  <script type='text/javascript' src='http://d3js.org/d3.v3.min.js'></script>
+  <script type='text/javascript' src="correxplorer.js"></script>
+  <link rel="stylesheet" type="text/css" href="correxplorer.css">
 </head>
 
-<body>
-	Test
+<body>  
+  <p>    
+    <button id="js_comparison">Generate Email Date/Time Open Ratio Table</button>
+  
+    Sort by:
+    <select id="sort_func">      
+      <option value="value" selected="selected">by Value</option>      
+    </select>
+    
+    Zoom?
+    <input type='text' id="zoom" value="1.">
+  </p>
+  <div class="tooltip" style="opacity: 0.01"></div>  
+  
 </body>
+
+
 </html>
+

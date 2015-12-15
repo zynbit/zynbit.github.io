@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {});
+      google.load("prototype", "1.6");
+    </script>
+    
+    <script type="text/javascript" src="http://systemsbiology-visualizations.googlecode.com/svn/trunk/src/main/js/load.js"></script>
+    <script type="text/javascript">
+        systemsbiology.load("visualization", "1.0", {packages:["bioheatmap"]});
+    </script>
+
+    <script type="text/javascript">
+      google.setOnLoadCallback(drawHeatMap);
+      function drawHeatMap() {
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Day');          
+          var hours = ['7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM'];
+          for(var i = 0; i < hours.length; i++) {
+            data.addColumn('number', hours[i]);
+          }
+          var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+          data.addRows(days.length);
+          for(var i = 0; i < days.length; i++) {
+            data.setCell(i, 0, days[i]);
+            for(var j = 1; j <= 13; j++) {
+                var input = Math.floor((Math.random() * 10) + 1);
+                data.setCell(i, j, input);
+            }  
+          }          
+
+          heatmap = new org.systemsbiology.visualization.BioHeatMap(document.getElementById('heatmapContainer'));          
+          heatmap.draw(data, {
+            cellWidth: 45,
+            cellHeight: 25,
+            startColor: {
+                r: 255, 
+                g: 255, 
+                b: 255, 
+                a: 1
+            },
+            endColor: {
+                r: 0, 
+                g: 140, 
+                b: 0, 
+                a: 1  
+            },
+            passThroughBlack: false
+          });          
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="heatmapContainer"></div>
+  </body>
+</html>
